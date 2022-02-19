@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Todo list</title>
+</head>
+<body>
+    <!-- main page -->
+    <section class="main-page">
+        <div class="main-page-wrapper">
+            <div class="nav-header">
+                <div class="nav-icons">
+                    <a href="#" class="nav-bar">
+                        <div class="one"></div>
+                        <div class="two"></div>
+                        <div class="three"></div>
+                    </a>
+                    <i class="fa-regular fa-bell"></i>
+                    <i class="fas fa-search"></i>
+                </div>  
+                <div class="nav-contents">
+                    <h1>MyTodo</h1>
+                    <div class="add-task">
+                        <span>+</span>
+                    </div>
+                </div>  
+            </div>
+            <div class="tasks">
+                <h1>TODAY'S TASKS</h1>
+                <div class="tasks-content">
+                    <ul>
+                        <li>
+                            <input type="checkbox" id="cbox1" value="first-checkbox">
+                            <label for="cbox1">study my book and do my assignments</label>
+                            <i class="fas fa-times"></i>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="cbox2" value="first-checkbox">
+                            <label for="cbox2"> wash my clothes and go to my friends place</label>
+                            <i class="fas fa-times"></i>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="cbox3" value="first-checkbox">
+                            <label for="cbox3"> have breakfast and cook lunch</label>
+                            <i class="fas fa-times"></i>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="cbox4" value="first-checkbox">
+                            <label for="cbox4">make new money before entering a relationship</label>
+                            <i class="fas fa-times"></i>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="cbox5" value="first-checkbox">
+                            <label for="cbox5"> wash my clothes</label>
+                            <i class="fas fa-times"></i>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- new task modal -->
+        <div class="new-task-wrapper">
+            <div class="new-task">
+                <div class="new-task-header">
+                    <i class="fas fa-times"></i>
+                </div>
+                <div class="form">
+                    <input type="text" placeholder="Enter new task">                     
+                    <input type="text" placeholder="Add Description" style="resize: horizontal; width: 20rem; height: 5rem;" >
+                    <button type="button" class="btn">Submit Task</button>
+                </div>
+            </div>
+        </div>
+        <!-- end of new task modal -->
+    </section>
+    <!-- end of main page -->
+    
+    <script src="script.js"></script>
+</body>
+</html>
