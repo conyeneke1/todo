@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.css">
     <link rel="stylesheet" href="style.css">
+    
     <title>Todo list</title>
 </head>
 <body>
@@ -33,32 +34,8 @@
             <div class="tasks">
                 <h1>TODAY'S TASKS</h1>
                 <div class="tasks-content">
-                    <ul>
-                        <li>
-                            <input type="checkbox" id="cbox1" value="first-checkbox">
-                            <label for="cbox1">study my book and do my assignments</label>
-                            <i class="fas fa-times"></i>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="cbox2" value="first-checkbox">
-                            <label for="cbox2"> wash my clothes and go to my friends place</label>
-                            <i class="fas fa-times"></i>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="cbox3" value="first-checkbox">
-                            <label for="cbox3"> have breakfast and cook lunch</label>
-                            <i class="fas fa-times"></i>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="cbox4" value="first-checkbox">
-                            <label for="cbox4">make new money before entering a relationship</label>
-                            <i class="fas fa-times"></i>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="cbox5" value="first-checkbox">
-                            <label for="cbox5"> wash my clothes</label>
-                            <i class="fas fa-times"></i>
-                        </li>
+                    <ul id="todo-items">
+                        
                     </ul>
                 </div>
             </div>
@@ -70,9 +47,9 @@
                     <i class="fas fa-times"></i>
                 </div>
                 <div class="form">
-                    <input type="text" placeholder="Enter new task">                     
-                    <input type="text" placeholder="Add Description" style="resize: horizontal; width: 20rem; height: 5rem;" >
-                    <button type="button" class="btn">Submit Task</button>
+                    <input type="text" id="todoTitle" placeholder="Enter new task">                     
+                    <textarea type="text" id="todoDescription" placeholder="Add Description" style="resize: horizontal; width: 20rem; height: 5rem;" ></textarea>
+                    <button type="button" class="btn" id="submitTask">Submit Task</button>
                 </div>
             </div>
         </div>
@@ -80,6 +57,83 @@
     </section>
     <!-- end of main page -->
     
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="script.js"></script>
+
+    <script>
+        const baseUrl = "https://simp-node-todo.herokuapp.com"
+        var ul = document.getElementById("todo-items")
+        getAllTodos()
+        
+
+
+        var submitButton = document.getElementById("submitTask")
+        submitButton.addEventListener('click', () => {
+            // submit form
+            let todoTitle = document.getElementById("todoTitle")
+            let todoDesc = document.getElementById("todoDescription")
+
+            if (todoTitle.value == "")
+            {
+                alert('Please enter a title for your todo')
+                return
+            }
+
+            submitButton.innerHTML = "Loading... <i class='fa fa-spinner fa-spin'></i>"
+            submitButton.setAttribute('disabled', true)
+
+            axios.post(`${baseUrl}/todo`, {
+                title: todoTitle.value,
+                description: todoDesc.value,
+                status: false
+            })
+            .then(function (response) {
+                alert('Your todo item has been created')
+                submitButton.innerHTML = "Submit"
+                submitButton.removeAttribute('disabled')
+                todoTitle.value = ""
+                todoDesc.value = ""
+                newTask.style.display = "hidden"
+                modalWrapper.classList.remove('new-task-display');
+                
+
+                var li = document.createElement("li")
+                    li.classList.add("todo-item")
+                    li.innerHTML = `
+                    <input type="checkbox" class="cbox1" value="first-checkbox">
+                    <label for="cbox1">${response.data.title}</label>
+                    <i class="fas fa-times"></i>`
+                console.log(li)
+                ul.prepend(li)
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        })
+
+
+        function getAllTodos() {
+            // make request
+            axios.get(`${baseUrl}/todo`)
+            .then(function (response) {
+                var todos = response.data
+
+                todos.forEach(item => {
+                    var li = document.createElement("li")
+                    li.classList.add("todo-item")
+                    li.innerHTML = `
+                    <input type="checkbox" class="cbox1" value="first-checkbox">
+                    <label for="cbox1">${item.title}</label>
+                    <i class="fas fa-times"></i>`
+                    ul.append(li)
+                })
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            });
+        }
+    
+    </script>
 </body>
 </html>
