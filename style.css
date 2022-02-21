@@ -10,7 +10,7 @@ body {
 .main-page {
     display: grid;
     width: 55%;
-    height: 85vh;
+    height: max-content;
     background-color: #c1eff8;
     margin: 4rem auto;
     border-radius: 1rem;
@@ -37,7 +37,7 @@ body {
     width: 30px;
     display: block;
     cursor: pointer;
-    margin-right: 23rem;
+    margin-right: 15rem;
 }
 
 .nav-bar div {
@@ -105,7 +105,7 @@ body {
 }
 
 .tasks-content ul li i {
-    position: fixed;
+    position: absolute;
     color: #959595;
     font-size: 1.5rem;
     cursor: pointer;
@@ -225,4 +225,59 @@ body {
     color: #000;
     text-decoration: line-through;
     transition: all 0.5;
+}
+
+/* responsive */
+@media (max-width: 1400px) {
+    .tasks-content ul li i {
+        margin-left: 44%;
+    }
+
+    .nav-bar {
+        margin-right: 15rem;
+    }
+}
+
+@media (max-width: 1120px) {
+    .nav-bar {
+        margin-right: 10rem;
+    }
+
+    .tasks-content ul li i {
+        margin-left: 42%;
+    }
+}
+
+@media (max-width: 950px) {
+    .nav-bar {
+        margin-right: 10rem;
+    }
+
+    .tasks-content ul li i {
+        margin-left: 39%;
+    }
+}
+
+@media (max-width: 790px) {
+    .nav-bar {
+        margin-right: 5rem;
+    }
+
+    .tasks-content ul li i {
+        margin-left: 35%;
+    }
+
+    .nav-icons i {
+        display: none;
+    }
+}
+
+@media (max-width: 670px) {
+    .nav-contents h1 {
+        display: none;
+    }
+
+    .tasks-content ul li i {
+        margin-left: 30%;
+    }
 }

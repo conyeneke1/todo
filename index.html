@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.css">
     <link rel="stylesheet" href="style.css">
@@ -103,7 +103,6 @@
                     <input type="checkbox" class="cbox1" value="first-checkbox">
                     <label for="cbox1">${response.data.title}</label>
                     <i class="fas fa-times"></i>`
-                console.log(li)
                 ul.prepend(li)
             })
             .catch(function (error) {
